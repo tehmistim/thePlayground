@@ -20,30 +20,30 @@
 ### Pages:
 
 - [ ] Login\
-[ ] NewsFeed\
-[ ] Add new post\
+- [ ] NewsFeed\
+- [ ] Add new post\
 
 ----------
 ### User is able to:
 
-[ ] Login\
-[ ] Post a photo\
-[ ] Create a caption for a photo\
-[ ] Like a photo\
-[ ] Comment on a photo\
-[ ] Bookmark a photo\
+- [ ] Login\
+- [ ] Post a photo\
+- [ ] Create a caption for a photo\
+- [ ] Like a photo\
+- [ ] Comment on a photo\
+- [ ] Bookmark a photo\
 
 ----------
 ### Database contains:
 
-[ ] Users\
-[ ] Posts\
-[ ] Photo URLs\
-[ ] Comments on posts\
+- [ ] Users\
+- [ ] Posts\
+- [ ] Photo URLs\
+- [ ] Comments on posts\
 
 ----------
 
 ## Deployment
 
-[ ] Demo video\
-[ ] Firebase\
+- [ ] Demo video\
+- [ ] Firebase\
