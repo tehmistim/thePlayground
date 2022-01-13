@@ -19,9 +19,9 @@
 🤖📱
 ### Pages:
 
-- [ ] Login\
-- [ ] NewsFeed\
-- [ ] Add new post\
+- [ ] Login
+- [ ] NewsFeed
+- [ ] Add new post
 
 ----------
 ### User is able to:
