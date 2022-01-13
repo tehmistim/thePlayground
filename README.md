@@ -19,7 +19,7 @@
 🤖📱
 ### Pages:
 
-[ ] Login\
+- [ ] Login\
 [ ] NewsFeed\
 [ ] Add new post\
 
