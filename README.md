@@ -6,7 +6,7 @@
 # Playground
 ----------
 ## Summary
-Playground is a social media app that allows users to share photos of their pets, interact and comment, like and share other pets across the platform.
+#### Playground is a social media app that allows users to share photos of their pets, interact and comment, like and share other pets across the platform.
 ----------
 ## Language / Framework
 
@@ -19,31 +19,31 @@ Playground is a social media app that allows users to share photos of their pets
 🤖📱
 ### Pages:
 
-[] Login
-[] NewsFeed
-[] Add new post
+[ ] Login\
+[ ] NewsFeed\
+[ ] Add new post\
 
 ----------
 ### User is able to:
 
-[] Login
-[] Post a photo
-[] Create a caption for a photo
-[] Like a photo
-[] Comment on a photo
-[] Bookmark a photo
+[ ] Login\
+[ ] Post a photo\
+[ ] Create a caption for a photo\
+[ ] Like a photo\
+[ ] Comment on a photo\
+[ ] Bookmark a photo\
 
 ----------
 ### Database contains:
 
-[] Users
-[] Posts
-[] Photo URLs
-[] Comments on posts
+[ ] Users\
+[ ] Posts\
+[ ] Photo URLs\
+[ ] Comments on posts\
 
 ----------
 
 ## Deployment
 
-[] Demo video
-[] Firebase
+[ ] Demo video\
+[ ] Firebase\
