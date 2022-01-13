@@ -4,17 +4,16 @@
 - currently in development
 
 # Playground
-----------
+
 ## Summary
 #### Playground is a social media app that allows users to share photos of their pets, interact and comment, like and share other pets across the platform.
-----------
+
 ## Language / Framework
 
 - JavaScript
 - React-Native
 - Firebase
 
-----------
 ## MVP
 🤖📱
 ### Pages:
@@ -23,7 +22,6 @@
 - [ ] NewsFeed
 - [ ] Add new post
 
-----------
 ### User is able to:
 
 - [ ] Login
@@ -33,7 +31,7 @@
 - [ ] Comment on a photo
 - [ ] Bookmark a photo
 
-----------
+
 ### Database contains:
 
 - [ ] Users
@@ -41,7 +39,6 @@
 - [ ] Photo URLs
 - [ ] Comments on posts
 
-----------
 
 ## Deployment
 
