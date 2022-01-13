@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "@react-native-community/masked-view": "^0.1.11",
+    "babel": "^6.23.0",
+    "expo": "^44.0.4",
+    "formik": "^2.2.9",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-native": "^0.66.4",
+    "react-native-elements": "^3.4.2",
+    "react-native-gesture-handler": "~2.1.0",
+    "react-native-reanimated": "~2.3.1",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-screens": "~3.10.1",
+    "react-native-web": "^0.17.1",
+    "yarn": "^1.22.17",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.7"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
+  },
+  "version": "1.0.0",
+  "private": true,
+  "name": "instaclone"
+}
