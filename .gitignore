@@ -62,3 +62,8 @@ buck-out/
 # Expo
 .expo/*
 web-build/
+
+# Misc.
+dataModel.ndm2
+dataModel.pdf
+dataModel.jpg

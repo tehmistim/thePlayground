@@ -1,25 +1,26 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { View, Text, Image, StyleSheet, } from 'react-native';
+import { View, Text, Image, StyleSheet, Linking, TouchableOpacity } from 'react-native';
 
-const Header = () => {
+const MY_URL = 'https://www.louisianahuskyrescue.com';
+
+const Header = ({navigation}) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity>
                 <Image 
                 style={styles.logo} 
-                source={require('../../assets/header-logo.png')} 
+                source={require('../../assets/headerLogo.png')} 
                 />
             </TouchableOpacity>
 
             <View style={styles.iconsContainer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => Linking.openURL(MY_URL)}>
                     <Image 
                     source={require('../../assets/lahr.png')}
                     style={styles.icon}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.push('NewPostScreen')}>
                     <Image 
                     source={{uri: 'https://img.icons8.com/fluency-systems-regular/60/ffffff/plus-2-math.png'}}
                     style={styles.icon}

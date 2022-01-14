@@ -5,6 +5,8 @@ import { Formik } from 'formik';
 import { TextInput } from 'react-native-gesture-handler';
 import { Divider } from 'react-native-elements';
 import { Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import validUrl from 'valid-url'
 
 const PLACEHOLDER_IMG = 'https://www.gaithersburgdental.com/wp-content/uploads/2016/10/orionthemes-placeholder-image.png'
 
@@ -13,12 +15,17 @@ const uploadPostSchema = Yup.object().shape({
     caption: Yup.string().max(2200, 'Caption has reached the character limit.')
 })
 
-const FormikPostUploader = () => {
+const FormikPostUploader = ({ navigation }) => {
     const [thumbnailUrl, setThumbnailUrl] = useState(PLACEHOLDER_IMG)
+
     return (
         <Formik
             initialValues={{caption: '', imageUrl: ''}}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => { 
+                console.log(values)
+                console.log('Your post was submitted successfully 🐶')
+                navigation.goBack()
+            }}
             validationSchema={uploadPostSchema}
             validateOnMount={true}
             // validateOnMount changes the ability of the share button to become clickable when a valid URL is placed in the input field.
@@ -33,7 +40,12 @@ const FormikPostUploader = () => {
                     }}
                     >
                         <Image 
-                            source={{ uri: PLACEHOLDER_IMG }} 
+                            source={{ 
+                                uri: validUrl.isUri(thumbnailUrl) 
+                                // validUrl will keep placeholder image until a valid image destination is found.  Invalid ones will show placeholder
+                                    ? thumbnailUrl 
+                                    : PLACEHOLDER_IMG 
+                                }} 
                             style={{ width: 100, height: 100 }}
                         />
                     <View style={{ flex: 1, marginLeft: 12 }}>
@@ -50,6 +62,8 @@ const FormikPostUploader = () => {
                 </View>
                     <Divider width={0.2} orientation='vertical' />
                     <TextInput 
+                        onChange={(e) => setThumbnailUrl(e.nativeEvent.text)}
+                        // onChange will take imageUrl and render it on the add new post screen next to where the user types in the caption before sharing.
                         style={{ color: 'white', fontSize: 18 }}
                         placeholder='Enter Image Url' 
                         placeholderTextColor='white'
