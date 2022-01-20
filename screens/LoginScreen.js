@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Image } from 'react-native'
 import LoginForm from '../components/loginScreen/LoginForm';
 
-const PLAYGROUND_LOGO = 'https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/271935955_10226154154629216_1263521107427513589_n.jpg?_nc_cat=108&_nc_rgb565=1&ccb=1-5&_nc_sid=730e14&_nc_ohc=ZuYF48Cnr6YAX_z8HrG&_nc_ht=scontent-atl3-1.xx&oh=00_AT-HufQnqC-7sBBBiW1AEet_Yalc81t6ov6-3TvqIcwTSA&oe=61E5F138'
+const PLAYGROUND_LOGO = 'https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/271935955_10226154154629216_1263521107427513589_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=730e14&_nc_ohc=0TUUg4Il4nEAX8AdH1z&_nc_ht=scontent-atl3-1.xx&oh=00_AT8vRmHQ-GSZ86Rqj6dTkOk_Y33-itjSu9MJiG3D_SDb1g&oe=61EDDA38'
 
 
 const LoginScreen = () => (

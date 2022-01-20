@@ -5,7 +5,7 @@ import { Formik } from 'formik';
 import Validator from 'email-validator';
 
 
-const SignupForm = () => {
+const SignUpForm = () => {
     const SignupFormSchema = Yup.object().shape({
         email: Yup.string().email().required('Email is required'),
         password: Yup.string()
@@ -126,4 +126,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SignupForm
+export default SignUpForm

@@ -4,7 +4,8 @@ import React from 'react'
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 import NewPostScreen from './screens/NewPostScreen'
-import SignupScreen from './screens/SignupScreen'
+import SignUpScreen from './screens/SignupScreen'
+import TestScreen from './screens/TestScreen'
 
 
 const Stack = createStackNavigator()
@@ -17,14 +18,14 @@ const SignedInStack = () => (
 
     <NavigationContainer>
         <Stack.Navigator 
-            initialRouteName='SignupScreen' 
+            initialRouteName='SignUpScreen' 
             screenOptions={screenOptions}
         >
             <Stack.Screen name='HomeScreen' component={HomeScreen} /> 
             <Stack.Screen name='NewPostScreen' component={NewPostScreen} />
             <Stack.Screen name='LoginScreen' component={LoginScreen} /> 
-            <Stack.Screen name='SignupScreen' component={SignupScreen} /> 
-
+            <Stack.Screen name='SignUpScreen' component={SignUpScreen} /> 
+            <Stack.Screen name='TestScreen' component={TestScreen} /> 
         </Stack.Navigator>
     </NavigationContainer>
     
