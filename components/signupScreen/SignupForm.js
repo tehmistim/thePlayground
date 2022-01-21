@@ -5,9 +5,10 @@ import { Formik } from 'formik';
 import Validator from 'email-validator';
 
 
-const SignUpForm = () => {
-    const SignupFormSchema = Yup.object().shape({
+const SignUpForm = ({ navigation }) => {
+    const SignUpFormSchema = Yup.object().shape({
         email: Yup.string().email().required('Email is required'),
+        username: Yup.string().required().min(2, 'Username is required'),
         password: Yup.string()
             .required()
             .min(8, 'Password must be at least 8 characters in length')
@@ -17,11 +18,11 @@ const SignUpForm = () => {
     return (
             <View style={styles.wrapper}>
                 <Formik
-                    initialValues={{ email: '', password: '' }}
+                    initialValues={{ email: '', username: '', password: '' }}
                     onSubmit={values => {
                         console.log(values)
                     }}
-                    validationSchema={LoginFormSchema}
+                    validationSchema={SignUpFormSchema}
                     validateOnMount={true}
                 >
                    {({ handleChange, handleBlur, handleSubmit, values, isValid }) => (
@@ -34,7 +35,7 @@ const SignUpForm = () => {
                 ]}>
                     <TextInput
                         placeholderTextColor='#444'
-                        placeholder='Phone number, username or email'
+                        placeholder='valid email address'
                         autoCapitalize='none'
                         keyboardType='email-address'
                         textContentType='emailAddress'
@@ -47,12 +48,30 @@ const SignUpForm = () => {
 
                 <View style={[ styles.inputField, 
                     {
+                        borderColor: 1 >values.username.length || values.username.length
+                        >=8 ? '#ccc' : 'red'
+                    },
+                ]}>
+                    <TextInput
+                        placeholderTextColor='#444'
+                        placeholder='choose a username '
+                        autoCapitalize='none'
+                        textContentType='username'
+                        autoFocus={true}
+                        onChangeText={handleChange('username')}
+                        onBlur={handleBlur('username')}
+                        value={values.username}
+                    />
+                </View>
+
+                <View style={[ styles.inputField, 
+                    {
                         borderColor: 1 > values.password.length || values.password.length >= 8 ? '#ccc' : 'red',
                     },
                 ]}>
                     <TextInput 
                         placeholderTextColor='#444'
-                        placeholder='Password'
+                        placeholder='password'
                         autoCapitalize='none'
                         autoCorrect={false}
                         secureTextEntry={true}
@@ -62,23 +81,19 @@ const SignUpForm = () => {
                         value={values.password}
                     />
                 </View>
-                <View style={{ alignItems: 'flex-end', marginBottom: 30 }}>
-                    <Text style={{ color: '#6BB0F5'}}>Forgot Password?</Text>
-                </View>
+                
                 <Pressable 
                     titleSize={20} 
                     style={styles.button} 
                     onPress={ handleSubmit }
                 >
-                    <Text style={styles.buttonText}>Login</Text>
+                    <Text style={styles.buttonText}>Sign Up</Text>
                 </Pressable>
 
                 <View style={styles.signupContainer}>
-                    <Text>
-                        Don't have an account yet?
-                    </Text>
-                    <TouchableOpacity>
-                        <Text style={{ color: '#6BB0F5' }}>          Sign Up Now</Text>
+                    <Text>Already have an account?     </Text>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Text style={{ color: '#6BB0F5' }}>     Log In</Text>
                     </TouchableOpacity>
                 </View>
                 </>
