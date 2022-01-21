@@ -10,7 +10,7 @@ const SignUpScreen = () => (
         <View style={ styles.logoContainer }>
             <Image source={{ uri: PLAYGROUND_LOGO, height: 100, width: 350 }} />
         </View>
-        {/* <SignUpForm /> */}
+        <SignUpForm />
     </View>
 )
 
