@@ -92,18 +92,17 @@ const SignUpForm = ({ navigation }) => {
 
                 <View style={styles.signupContainer}>
                     <Text>Already have an account?     </Text>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <TouchableOpacity onPress={() => navigation.push('LoginScreen')}>
                         <Text style={{ color: '#6BB0F5' }}>     Log In</Text>
                     </TouchableOpacity>
                 </View>
                 </>
                    )}
                 </Formik>
-            
-    
-    </View>
+            </View>
     )
 }
+
 
 const styles = StyleSheet.create({
     wrapper: {
