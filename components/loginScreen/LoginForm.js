@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Pressable, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import Validator from 'email-validator';
@@ -7,7 +7,7 @@ import firebase from '../../firebase'
 
 
 const LoginForm = ({ navigation }) => {
-    const LoginFormSchema = Yup.object().shape({
+    const loginFormSchema = Yup.object().shape({
         email: Yup.string().email().required('Email is required'),
         password: Yup.string().required().min(8, 'Password must be at least 8 characters in length')
 
@@ -16,7 +16,7 @@ const LoginForm = ({ navigation }) => {
     const onLogin = async (email, password) => {
         try {
             await firebase.auth().signInWithEmailAndPassword(email,password)
-            console.log('firebase login successful', email, password)
+            console.log('login successful', email, password)
         } catch(error) {
             Alert.alert(
                 'WOAH!',
@@ -40,13 +40,11 @@ const LoginForm = ({ navigation }) => {
             <View style={styles.wrapper}>
                 <Formik
                     initialValues={{ email: '', password: '' }}
-                    onSubmit={values => {
-                        onLogin(values.email, values.password)
-                    }}
-                    validationSchema={LoginFormSchema}
+                    onSubmit={(values) => onLogin(values.email, values.password)}
+                    validationSchema={loginFormSchema}
                     validateOnMount={true}
                 >
-                   {({ handleChange, handleBlur, handleSubmit, values, }) => (
+                   {({ handleChange, handleBlur, handleSubmit, values }) => (
                 <>
                    
                 <View style={[ styles.inputField, 
@@ -88,26 +86,31 @@ const LoginForm = ({ navigation }) => {
                 <View style={{ alignItems: 'flex-end', marginBottom: 30 }}>
                     <Text style={{ color: '#6BB0F5'}}>Forgot Password?</Text>
                 </View>
-                <Pressable 
-                    titleSize={20} 
-                    style={styles.button} 
-                    onPress={ handleSubmit }
+                <TouchableOpacity
+                    titleSize={20}
+                    style={styles.button}
+                    onPress={ handleSubmit, console.log('login submit') }
                 >
-                    <Text style={{ fontWeight: "600", fontSize: 20, color: "#fff" }}>Login</Text>
-                </Pressable>
-
+                        <Text
+                        style={{ fontWeight: "600", fontSize: 20, color: "#fff" }}
+                        >
+                            Log in
+                        </Text>
+                </TouchableOpacity>
                 <View style={styles.signupContainer}>
                     <Text>
-                        Don't have an account yet?
+                        Don't have an account yet?      
                     </Text>
-                    <TouchableOpacity onPress={() => navigation.push('SignUpScreen')}>
-                        <Text style={{ color: '#6BB0F5' }}>          Sign Up Now</Text>
+                    <TouchableOpacity 
+                    onPress={() => navigation.push('SignUpScreen')}>
+                        <Text style={{ color: '#6BB0F5' }}>         Sign Up Now
+                        </Text>
                     </TouchableOpacity>
                 </View>
                 </>
-                   )}
-                </Formik>
-            </View>
+            )}
+            </Formik>
+        </View>
     )
 }
 
@@ -126,8 +129,10 @@ const styles = StyleSheet.create({
     },
 
     button: {
+        width: '125px',
         backgroundColor: '#0096F6',
         alignItems: 'center',
+        alignSelf: 'center',
         justifyContent: 'center',
         minHeight: 42,
         borderRadius: 4,
@@ -147,4 +152,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default LoginForm
+export default LoginForm;

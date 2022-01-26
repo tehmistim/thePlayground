@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Pressable, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Pressable, TouchableOpacity, Alert } from 'react-native';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import Validator from 'email-validator';
+import firebase from '../../firebase'
 
 
 const SignUpForm = ({ navigation }) => {
-    const SignUpFormSchema = Yup.object().shape({
+    const signUpFormSchema = Yup.object().shape({
         email: Yup.string().email().required('Email is required'),
         username: Yup.string().required().min(2, 'Username is required'),
         password: Yup.string()
@@ -15,14 +16,24 @@ const SignUpForm = ({ navigation }) => {
 
     });
         
+    const onSignup = async (email, password) => {
+        try {
+            await firebase.auth().createUserWithEmailAndPassword(email,password)
+            console.log('User created successfully', email, password)
+        } catch(error) {
+            Alert.alert('WOAH!', error.message)
+        }
+    }
+
     return (
             <View style={styles.wrapper}>
                 <Formik
                     initialValues={{ email: '', username: '', password: '' }}
                     onSubmit={values => {
-                        console.log(values)
+                        onSignup(values.email, values.password)
+                        // navigation.push('LoginScreen')
                     }}
-                    validationSchema={SignUpFormSchema}
+                    validationSchema={signUpFormSchema}
                     validateOnMount={true}
                 >
                    {({ handleChange, handleBlur, handleSubmit, values, isValid }) => (
@@ -85,9 +96,15 @@ const SignUpForm = ({ navigation }) => {
                 <Pressable 
                     titleSize={20} 
                     style={styles.button} 
-                    onPress={ handleSubmit }
+                    onPress={ handleSubmit, console.log('signup submit') }
                 >
-                    <Text style={styles.buttonText}>Sign Up</Text>
+                    <TouchableOpacity>
+                        <Text
+                        style={{ fontWeight: "600", fontSize: 20, color: "#fff" }}
+                        >
+                            Signup
+                        </Text>
+                    </TouchableOpacity>                
                 </Pressable>
 
                 <View style={styles.signupContainer}>
@@ -119,8 +136,10 @@ const styles = StyleSheet.create({
     },
 
     button: {
+        width: '125px',
         backgroundColor: '#0096F6',
         alignItems: 'center',
+        alignSelf: 'center',
         justifyContent: 'center',
         minHeight: 42,
         borderRadius: 4,
