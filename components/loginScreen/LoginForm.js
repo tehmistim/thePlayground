@@ -40,7 +40,7 @@ const LoginForm = ({ navigation }) => {
             <View style={styles.wrapper}>
                 <Formik
                     initialValues={{ email: '', password: '' }}
-                    onSubmit={(values) => onLogin(values.email, values.password)}
+                    onSubmit={(values) => onLogin(values.email, values.password), console.log('login submit')}
                     validationSchema={loginFormSchema}
                     validateOnMount={true}
                 >
@@ -54,7 +54,7 @@ const LoginForm = ({ navigation }) => {
                 ]}>
                     <TextInput
                         placeholderTextColor='#444'
-                        placeholder='email'
+                        placeholder='username or email'
                         autoCapitalize='none'
                         autoCorrect={false}
                         keyboardType='email-address'
@@ -73,7 +73,7 @@ const LoginForm = ({ navigation }) => {
                 ]}>
                     <TextInput 
                         placeholderTextColor='#444'
-                        placeholder='Password'
+                        placeholder='password'
                         autoCapitalize='none'
                         autoCorrect={false}
                         secureTextEntry={true}
@@ -83,16 +83,18 @@ const LoginForm = ({ navigation }) => {
                         value={values.password}
                     />
                 </View>
+
                 <View style={{ alignItems: 'flex-end', marginBottom: 30 }}>
                     <Text style={{ color: '#6BB0F5'}}>Forgot Password?</Text>
                 </View>
+
                 <TouchableOpacity
                     titleSize={20}
                     style={styles.button}
-                    onPress={ handleSubmit, console.log('login submit') }
+                    onPress={ handleSubmit, () => console.log('login submit') } 
                 >
                         <Text
-                        style={{ fontWeight: "600", fontSize: 20, color: "#fff" }}
+                        style={{ fontWeight: '600', fontSize: 20, color: "#fff" }}
                         >
                             Log in
                         </Text>
@@ -102,8 +104,9 @@ const LoginForm = ({ navigation }) => {
                         Don't have an account yet?      
                     </Text>
                     <TouchableOpacity 
-                    onPress={() => navigation.push('SignUpScreen')}>
-                        <Text style={{ color: '#6BB0F5' }}>         Sign Up Now
+                        onPress={() => navigation.push('SignUpScreen')}>
+                        <Text 
+                            style={{ color: '#6BB0F5' }}>        Sign Up Now
                         </Text>
                     </TouchableOpacity>
                 </View>

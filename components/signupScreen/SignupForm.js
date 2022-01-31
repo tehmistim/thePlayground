@@ -36,7 +36,7 @@ const SignUpForm = ({ navigation }) => {
                     validationSchema={signUpFormSchema}
                     validateOnMount={true}
                 >
-                   {({ handleChange, handleBlur, handleSubmit, values, isValid }) => (
+                {({ handleChange, handleBlur, handleSubmit, values }) => (
                 <>
                    
                 <View style={[ styles.inputField, 
@@ -93,33 +93,34 @@ const SignUpForm = ({ navigation }) => {
                     />
                 </View>
                 
-                <Pressable 
-                    titleSize={20} 
-                    style={styles.button} 
-                    onPress={ handleSubmit, console.log('signup submit') }
+                <TouchableOpacity
+                    titleSize={20}
+                    style={styles.button}
+                    onPress={ handleSubmit, () => console.log('signup submit') } 
                 >
-                    <TouchableOpacity>
                         <Text
-                        style={{ fontWeight: "600", fontSize: 20, color: "#fff" }}
+                        style={{ fontWeight: '600', fontSize: 20, color: "#fff" }}
                         >
-                            Signup
+                            Sign Up
                         </Text>
-                    </TouchableOpacity>                
-                </Pressable>
+                </TouchableOpacity>
 
                 <View style={styles.signupContainer}>
-                    <Text>Already have an account?     </Text>
-                    <TouchableOpacity onPress={() => navigation.push('LoginScreen')}>
-                        <Text style={{ color: '#6BB0F5' }}>     Log In</Text>
+                    <Text>Already have an account? 
+                    </Text>
+                    <TouchableOpacity 
+                        onPress={() => navigation.push('LoginScreen')}>
+                        <Text 
+                            style={{ color: '#6BB0F5' }}>        Log In
+                        </Text>
                     </TouchableOpacity>
                 </View>
                 </>
-                   )}
+                )}
                 </Formik>
             </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     wrapper: {
