@@ -16,10 +16,10 @@ const SignUpForm = ({ navigation }) => {
 
     });
         
-    const onSignup = async (email, password) => {
+    const onSignUp = async (email, username, password) => {
         try {
-            await firebase.auth().createUserWithEmailAndPassword(email,password)
-            console.log('User created successfully', email, password)
+            await firebase.auth().createUserWithEmailAndPassword(email, username, password)
+            console.log('User created successfully', email, username, password)
         } catch(error) {
             Alert.alert('WOAH!', error.message)
         }
@@ -29,16 +29,18 @@ const SignUpForm = ({ navigation }) => {
             <View style={styles.wrapper}>
                 <Formik
                     initialValues={{ email: '', username: '', password: '' }}
-                    onSubmit={values => {
-                        onSignup(values.email, values.password)
-                        // navigation.push('LoginScreen')
-                    }}
+                    onSubmit={(values) => 
+                        onSignUp(values.email, values.username, values.password)}
+                    // onSubmit={values => {
+                    //     console.log(values)
+                    // }}
                     validationSchema={signUpFormSchema}
                     validateOnMount={true}
                 >
-                {({ handleChange, handleBlur, handleSubmit, values }) => (
+                {({ handleChange, handleBlur, handleSubmit, values }) => 
+                (
                 <>
-                   
+
                 <View style={[ styles.inputField, 
                     {
                         borderColor: values.email.length < 1 || Validator.validate(values.email) ? '#ccc' : 'red'
@@ -59,8 +61,7 @@ const SignUpForm = ({ navigation }) => {
 
                 <View style={[ styles.inputField, 
                     {
-                        borderColor: 1 >values.username.length || values.username.length
-                        >=8 ? '#ccc' : 'red'
+                        borderColor: 1 >values.username.length || values.username.length >=8 ? '#ccc' : 'red',
                     },
                 ]}>
                     <TextInput
@@ -96,7 +97,7 @@ const SignUpForm = ({ navigation }) => {
                 <TouchableOpacity
                     titleSize={20}
                     style={styles.button}
-                    onPress={ handleSubmit, () => console.log('signup submit') } 
+                    onPress={ handleSubmit } 
                 >
                         <Text
                         style={{ fontWeight: '600', fontSize: 20, color: "#fff" }}

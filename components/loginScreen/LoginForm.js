@@ -17,22 +17,23 @@ const LoginForm = ({ navigation }) => {
         try {
             await firebase.auth().signInWithEmailAndPassword(email,password)
             console.log('login successful', email, password)
-        } catch(error) {
-            Alert.alert(
-                'WOAH!',
-                error.message + 'What would you like to do?'
-                [
-                    {
-                        text: 'Try again',
-                        onPress: () => console.log('Try again'),
-                        style: 'cancel',
-                    },
-                    {
-                        text: 'Sign Up',
-                        onPress: () => navigation.push('SignUpScreen')
-                    }
-                ]
-            )
+        } catch (error) {
+            Alert.alert(error.message)
+                // 'WOAH!',
+                // error.message
+                //  + 'What would you like to do?'
+                // [
+                //     {
+                //         text: 'Try again',
+                //         onPress: () => console.log('Try again'),
+                //         style: 'cancel',
+                //     },
+                //     {
+                //         text: 'Sign Up',
+                //         onPress: () => navigation.push('SignUpScreen')
+                //     }
+                // ]
+            // )
         }
     }
 
@@ -40,7 +41,11 @@ const LoginForm = ({ navigation }) => {
             <View style={styles.wrapper}>
                 <Formik
                     initialValues={{ email: '', password: '' }}
-                    onSubmit={(values) => onLogin(values.email, values.password), console.log('login submit')}
+                    onSubmit={values => {
+                        onLogin(values.email, values.password)
+                    // onSubmit={values => {
+                    //     console.log(values)
+                    }}
                     validationSchema={loginFormSchema}
                     validateOnMount={true}
                 >
@@ -91,12 +96,12 @@ const LoginForm = ({ navigation }) => {
                 <TouchableOpacity
                     titleSize={20}
                     style={styles.button}
-                    onPress={ handleSubmit, () => console.log('login submit') } 
+                    onPress={ handleSubmit } 
                 >
                         <Text
                         style={{ fontWeight: '600', fontSize: 20, color: "#fff" }}
                         >
-                            Log in
+                            Log-in
                         </Text>
                 </TouchableOpacity>
                 <View style={styles.signupContainer}>
