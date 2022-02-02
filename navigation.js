@@ -13,23 +13,32 @@ const screenOptions = {
     headerShown: false,
 }
 
-const SignedInStack = () => (
+export const SignedInStack = () => (
 
     <NavigationContainer>
         <Stack.Navigator 
-            initialRouteName='LoginScreen' 
+            initialRouteName='HomeScreen' 
             screenOptions={screenOptions}
         >
             <Stack.Screen name='HomeScreen' component={HomeScreen} /> 
             <Stack.Screen name='NewPostScreen' component={NewPostScreen} />
-            <Stack.Screen name='LoginScreen' component={LoginScreen} /> 
-            <Stack.Screen name='SignUpScreen' component={SignUpScreen} /> 
         </Stack.Navigator>
     </NavigationContainer>
     
 )
 
-export default SignedInStack
+export const SignedOutStack = () => (
+    <NavigationContainer>
+        <Stack.Navigator 
+            initialRouteName='LoginScreen' 
+            screenOptions={screenOptions}
+        >
+            <Stack.Screen name='LoginScreen' component={LoginScreen} /> 
+            <Stack.Screen name='SignUpScreen' component={SignUpScreen} /> 
+        </Stack.Navigator>
+    </NavigationContainer>
+)
+
 
 
 // () = implict return which is used at times for functions with no "return" call

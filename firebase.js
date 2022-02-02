@@ -5,7 +5,7 @@ import firebase from 'firebase';
 const firebaseConfig = {
 
     apiKey: 'AIzaSyATO_qIX0uKXxscHQGnsvacR93LTam1qgA',
-    authDomain: 'the.Playground.firebaseapp.com',
+    authDomain: 'theplayground-bb44e.firebaseapp.com',
     projectId: 'theplayground-bb44e',
     storageBucket: 'theplayground-bb44e.appspot.com',
     messagingSenderId: '623992589035',
@@ -18,5 +18,6 @@ const firebaseConfig = {
 !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
 const db = firebase.firestore();
+const storage = firebase.storage();
 
-export { firebase, db };
+export { firebase, db, storage };

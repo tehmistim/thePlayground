@@ -7,7 +7,7 @@ import { firebase } from '../../firebase';
 
 
 const LoginForm = ({ navigation }) => {
-    const loginFormSchema = Yup.object().shape({
+    const LoginFormSchema = Yup.object().shape({
         email: Yup.string().email().required('Email is required'),
         password: Yup.string().required().min(8, 'Password must be at least 8 characters in length')
 
@@ -46,7 +46,7 @@ const LoginForm = ({ navigation }) => {
                     // onSubmit={values => {
                     //     console.log(values)
                     }}
-                    validationSchema={loginFormSchema}
+                    validationSchema={LoginFormSchema}
                     validateOnMount={true}
                 >
                    {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -90,7 +90,9 @@ const LoginForm = ({ navigation }) => {
                 </View>
 
                 <View style={{ alignItems: 'flex-end', marginBottom: 30 }}>
-                    <Text style={{ color: '#6BB0F5'}}>Forgot Password?</Text>
+                    <Text 
+                        onPress={() => navigation.push('HomeScreen')}
+                        style={{ color: '#6BB0F5'}}>Forgot Password?</Text>
                 </View>
 
                 <TouchableOpacity

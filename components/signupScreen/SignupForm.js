@@ -29,15 +29,17 @@ const SignUpForm = ({ navigation }) => {
             .createUserWithEmailAndPassword(email, password)
             console.log('User created successfully', email, username, password)
 
-            db.collection('users').add({
+            db.collection('users').doc(authUser.user.email).set({
                 owner_uid: authUser.user.uid,
                 username: username,
                 email: authUser.user.email,
                 profile_picture: await getRandomProfilePicture(),
-        
+        })
+            .then((docRef) => {
+                console.log('Document written with ID: ', docRef.id);
         })
         } catch (error) {
-            Alert.alert('WOAH!', error.message)
+            Alert.alert('WOAH!', error.message);
         }
     }
 
@@ -47,6 +49,7 @@ const SignUpForm = ({ navigation }) => {
                     initialValues={{ email: '', username: '', password: '' }}
                     onSubmit={values => {
                         onSignUp(values.email, values.username, values.password)
+                        
                     }}
                     // onSubmit={values => {
                     //     console.log(values)

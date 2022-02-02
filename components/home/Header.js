@@ -1,20 +1,35 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Linking, TouchableOpacity } from 'react-native';
+import { firebase } from '../../firebase';
 
-const MY_URL = 'https://www.louisianahuskyrescue.com';
+const handleSignOut = async () => {
+    try {
+        await 
+        firebase.auth().signOut()
+        console.log('Signed Out')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const MY_URL = 'http://www.louisianahuskyrescue.com';
 
 const Header = ({navigation}) => {
     return (
         <View style={styles.container}>
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={handleSignOut}
+            >
                 <Image 
-                style={styles.logo} 
-                source={require('../../assets/headerLogo.png')} 
+                    style={styles.logo} 
+                    source={require('../../assets/headerLogo.png')} 
                 />
             </TouchableOpacity>
 
             <View style={styles.iconsContainer}>
-            <TouchableOpacity onPress={() => Linking.openURL(MY_URL)}>
+            <TouchableOpacity 
+                onPress={() => Linking.openURL(MY_URL)}
+            >
                     <Image 
                     source={require('../../assets/lahr.png')}
                     style={styles.icon}
