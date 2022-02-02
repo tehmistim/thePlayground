@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'reac
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import Validator from 'email-validator';
-import firebase from '../../firebase'
+import { firebase } from '../../firebase';
 
 
 const LoginForm = ({ navigation }) => {
@@ -59,7 +59,7 @@ const LoginForm = ({ navigation }) => {
                 ]}>
                     <TextInput
                         placeholderTextColor='#444'
-                        placeholder='username or email'
+                        placeholder='email'
                         autoCapitalize='none'
                         autoCorrect={false}
                         keyboardType='email-address'

@@ -3,24 +3,40 @@ import { View, Text, TextInput, StyleSheet, Pressable, TouchableOpacity, Alert }
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import Validator from 'email-validator';
-import firebase from '../../firebase'
+import { firebase, db } from '../../firebase'
+
 
 
 const SignUpForm = ({ navigation }) => {
     const signUpFormSchema = Yup.object().shape({
         email: Yup.string().email().required('Email is required'),
-        username: Yup.string().required().min(2, 'Username is required'),
         password: Yup.string()
             .required()
             .min(8, 'Password must be at least 8 characters in length')
 
     });
-        
-    const onSignUp = async (email, username, password) => {
+     
+    const getRandomProfilePicture = async () => {
+        const response = await fetch('https://dog.ceo/api/breeds/image/random')
+        const data = await response.json()
+        return data.results[0].picture.large
+    }
+
+    const onSignUp = async (email, password, username) => {
         try {
-            await firebase.auth().createUserWithEmailAndPassword(email, username, password)
+            const authUser = await firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
             console.log('User created successfully', email, username, password)
-        } catch(error) {
+
+            db.collection('users').add({
+                owner_uid: authUser.user.uid,
+                username: username,
+                email: authUser.user.email,
+                profile_picture: await getRandomProfilePicture(),
+        
+        })
+        } catch (error) {
             Alert.alert('WOAH!', error.message)
         }
     }
@@ -29,8 +45,9 @@ const SignUpForm = ({ navigation }) => {
             <View style={styles.wrapper}>
                 <Formik
                     initialValues={{ email: '', username: '', password: '' }}
-                    onSubmit={(values) => 
-                        onSignUp(values.email, values.username, values.password)}
+                    onSubmit={values => {
+                        onSignUp(values.email, values.username, values.password)
+                    }}
                     // onSubmit={values => {
                     //     console.log(values)
                     // }}
